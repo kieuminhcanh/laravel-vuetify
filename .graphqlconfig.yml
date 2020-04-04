@@ -1,0 +1,4 @@
+projects:
+  app:
+    schemaPath: graphql/schema.graphql
+    includes: ["**/*.graphql"]
