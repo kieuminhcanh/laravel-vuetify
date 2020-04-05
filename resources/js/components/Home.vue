@@ -9,6 +9,7 @@
         </v-list>
       </v-col>
     </v-row>
+    {{users}}
   </v-container>
 </template>
 
@@ -17,19 +18,22 @@ import gql from "graphql-tag";
 
 export default {
   name: "Home",
-  // apollo: {
-  //   // Simple query that will update the 'hello' vue property
-  //   users: gql`
-  //     query {
-  //       users {
-  //         data {
-  //           id
-  //           name
-  //         }
-  //       }
-  //     }
-  //   `
-  // },
+  apollo: {
+    // Simple query that will update the 'hello' vue property
+    users: {
+      prefetch: true,
+      query: gql`
+        query {
+          users {
+            data {
+              id
+              name
+            }
+          }
+        }
+      `
+    }
+  },
   data: () => ({
     users: {},
     aaa: {},
@@ -41,12 +45,12 @@ export default {
   // This will be called by the server renderer automatically
   async serverPrefetch() {
     // this.posts = await this.getPosts();
-    try {
-      const result = await this.getUsersFromDatabase();
-      this.users = result.data.users;
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const result = await this.getUsersFromDatabase();
+    //   this.users = result.data.users;
+    // } catch (error) {
+    //   console.log(error);
+    // }
     // this.posts = await fetch(
     //   "https://jsonplaceholder.typicode.com/posts"
     // ).then(res => res.json());
@@ -68,29 +72,33 @@ export default {
       });
     },
     async getUsersFromDatabase() {
-      return this.$apollo
-        .query({
-          query: gql`
-            query {
-              users {
-                data {
-                  id
-                  name
-                }
-              }
-            }
-          `
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      // return this.$apollo
+      //   .query({
+      //     query: gql`
+      //       query {
+      //         users {
+      //           data {
+      //             id
+      //             name
+      //           }
+      //         }
+      //       }
+      //     `
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
+    }
+  },
+  async mounted() {
+    try {
+      if (!this.users.data) {
+        // const result = await this.getUsersFromDatabase();
+        // this.users = result.data.users;
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
-  // async mounted(){
-  //   this.posts = await fetch("https://jsonplaceholder.typicode.com/posts").then(res =>
-
-  //     res.json()
-  //   )
-  // }
 };
 </script>

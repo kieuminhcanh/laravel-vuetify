@@ -25,7 +25,7 @@ new Promise((resolve, reject) => {
             // When we attach the state to the context, and the `template` option
             // is used for the renderer, the state will automatically be
             // serialized and injected into the HTML as `window.__INITIAL_STATE__`.
-            context.state = store.state
+            context.state = app.$store.state
             context.apolloState = ApolloSSR.getStates(app.$apolloProvider.clients)
         }
         resolve(app)

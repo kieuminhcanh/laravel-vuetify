@@ -7123,8 +7123,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_1__);
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n            query {\n              users {\n                data {\n                  id\n                  name\n                }\n              }\n            }\n          "]);
+  var data = _taggedTemplateLiteral(["\n        query {\n          users {\n            data {\n              id\n              name\n            }\n          }\n        }\n      "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -7135,10 +7139,7 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+//
 //
 //
 //
@@ -7156,19 +7157,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
-  // apollo: {
-  //   // Simple query that will update the 'hello' vue property
-  //   users: gql`
-  //     query {
-  //       users {
-  //         data {
-  //           id
-  //           name
-  //         }
-  //       }
-  //     }
-  //   `
-  // },
+  apollo: {
+    // Simple query that will update the 'hello' vue property
+    users: {
+      prefetch: true,
+      query: graphql_tag__WEBPACK_IMPORTED_MODULE_1___default()(_templateObject())
+    }
+  },
   data: function data() {
     return {
       users: {},
@@ -7180,36 +7175,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   // Server-side only
   // This will be called by the server renderer automatically
-  serverPrefetch: function serverPrefetch() {
-    var _this = this;
+  serverPrefetch: function serverPrefetch() {// this.posts = await this.getPosts();
+    // try {
+    //   const result = await this.getUsersFromDatabase();
+    //   this.users = result.data.users;
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    // this.posts = await fetch(
+    //   "https://jsonplaceholder.typicode.com/posts"
+    // ).then(res => res.json());
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return _this.getUsersFromDatabase();
-
-            case 3:
-              result = _context.sent;
-              _this.users = result.data.users;
-              _context.next = 10;
-              break;
-
-            case 7:
-              _context.prev = 7;
-              _context.t0 = _context["catch"](0);
-              console.log(_context.t0);
-
-            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 7]]);
+      }, _callee);
     }))();
   },
   methods: {
@@ -7240,21 +7226,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    getUsersFromDatabase: function getUsersFromDatabase() {
-      var _this2 = this;
+    getUsersFromDatabase: function getUsersFromDatabase() {// return this.$apollo
+      //   .query({
+      //     query: gql`
+      //       query {
+      //         users {
+      //           data {
+      //             id
+      //             name
+      //           }
+      //         }
+      //       }
+      //     `
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", _this2.$apollo.query({
-                  query: graphql_tag__WEBPACK_IMPORTED_MODULE_1___default()(_templateObject())
-                })["catch"](function (error) {
-                  console.log(error);
-                }));
-
-              case 1:
               case "end":
                 return _context3.stop();
             }
@@ -7262,12 +7255,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     }
-  } // async mounted(){
-  //   this.posts = await fetch("https://jsonplaceholder.typicode.com/posts").then(res =>
-  //     res.json()
-  //   )
-  // }
+  },
+  mounted: function mounted() {
+    var _this = this;
 
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              try {
+                if (!_this.users.data) {// const result = await this.getUsersFromDatabase();
+                  // this.users = result.data.users;
+                }
+              } catch (error) {
+                console.log(error);
+              }
+
+            case 1:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }
 });
 
 /***/ }),
@@ -15083,7 +15095,8 @@ var render = function() {
           )
         ],
         1
-      )
+      ),
+      _vm._v("\n  " + _vm._s(_vm.users) + "\n")
     ],
     1
   )
@@ -79918,7 +79931,7 @@ new Promise(function (resolve, reject) {
       // When we attach the state to the context, and the `template` option
       // is used for the renderer, the state will automatically be
       // serialized and injected into the HTML as `window.__INITIAL_STATE__`.
-      context.state = store.state;
+      context.state = app.$store.state;
       context.apolloState = vue_apollo_ssr__WEBPACK_IMPORTED_MODULE_2___default.a.getStates(app.$apolloProvider.clients);
     };
 
@@ -80112,26 +80125,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! apollo-link-http */ "./node_modules/apollo-link-http/lib/bundle.esm.js");
 /* harmony import */ var apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! apollo-cache-inmemory */ "./node_modules/apollo-cache-inmemory/lib/bundle.esm.js");
 /* harmony import */ var _vue_apollo_option__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @vue/apollo-option */ "./node_modules/@vue/apollo-option/dist/vue-apollo-option.esm.js");
-// import Vue from 'vue';
-// import VueApollo from 'vue-apollo';
-// import ApolloClient from 'apollo-boost'
-// // import fetch from 'node-fetch';
-// import fetch from 'cross-fetch'
-// import { createHttpLink } from 'apollo-link-http'
-// Vue.use(VueApollo);
-// export function createProvider(options = { ssr: true }) {
-//   const link = createHttpLink({ uri: 'http://laravel-vuetify.test/graphql', fetch: fetch });
-//   const client = new ApolloClient({
-//     link,
-//     connectToDevTools: true,
-//     ssrMode: true
-//   });
-//   const apolloProvider = new VueApollo({
-//     defaultClient: client,
-//   })
-//   return apolloProvider
-// }
-// export default apolloProvider
 
 
 
@@ -80154,55 +80147,14 @@ function createProvider() {
   var apolloClient = new apollo_client__WEBPACK_IMPORTED_MODULE_2__["ApolloClient"]({
     link: link,
     cache: cache,
-    // connectToDevTools: true,
+    connectToDevTools: true,
     ssrMode: true
   });
   var apolloProvider = new _vue_apollo_option__WEBPACK_IMPORTED_MODULE_5__["default"]({
     defaultClient: apolloClient
   });
   return apolloProvider;
-} // export default createProvider
-// import Vue from 'vue'
-// import VueApollo from 'vue-apollo'
-// import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client'
-// Vue.use(VueApollo)
-// const httpEndpoint = 'http://laravel-vuetify.test/graphql'
-// // // Create the apollo client
-// const defaultOptions = {
-//   // You can use `https` for secure connection (recommended in production)
-//   httpEndpoint,
-//   // You can use `wss` for secure connection (recommended in production)
-//   // Enable Automatic Query persisting with Apollo Engine
-//   persisting: false,
-//   // Use websockets for everything (no HTTP)
-//   // You need to pass a `wsEndpoint` for this to work
-//   websocketsOnly: false,
-//   // Is being rendered on the server?
-//   ssr: true,
-//   // defaultHttpLink: false,
-//   httpLinkOptions: { fetch }
-// }
-// export function createProvider(options = { ssr: true }) {
-//   // Create apollo client
-//   const { apolloClient } = createApolloClient({
-//     ...defaultOptions,
-//     ...options,
-//   })
-//   // Create vue apollo provider
-//   const apolloProvider = new VueApollo({
-//     defaultClient: apolloClient,
-//     defaultOptions: {
-//       $query: {
-//         // fetchPolicy: 'cache-and-network',
-//       },
-//     },
-//     errorHandler(error) {
-//       // eslint-disable-next-line no-console
-//       console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
-//     },
-//   })
-//   return apolloProvider
-// }
+}
 
 /***/ }),
 
