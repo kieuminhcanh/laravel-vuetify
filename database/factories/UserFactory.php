@@ -29,14 +29,12 @@ $factory->define(User::class, function (Faker $faker) {
 });
 
 $factory->define(Post::class, function (Faker $faker) {
-    $data = [
-        'title' => $faker->sentence,
-        'description' => $faker->paragraph,
-        'content' => $faker->paragraph,
-        'thumbnail' => $faker->imageUrl("300", "300"),
-    ];
+    $title = $faker->sentence;
+    $slug =  Str::of($title)->slug('-');
+
     return [
-        'title' => $faker->sentence,
+        'title' => $title,
+        'slug' =>  $slug,
         'description' => $faker->paragraph,
         'content' => $faker->paragraph,
         'thumbnail' => $faker->imageUrl("300", "300"),
