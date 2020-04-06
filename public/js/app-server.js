@@ -7123,12 +7123,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n        query {\n          users {\n            data {\n              id\n              name\n            }\n          }\n        }\n      "]);
+  var data = _taggedTemplateLiteral(["\n            query {\n              users {\n                data {\n                  id\n                  name\n                }\n              }\n            }\n          "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -7139,7 +7135,10 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-//
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -7157,128 +7156,63 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
-  apollo: {
-    // Simple query that will update the 'hello' vue property
-    users: {
-      prefetch: true,
-      query: graphql_tag__WEBPACK_IMPORTED_MODULE_1___default()(_templateObject())
-    }
-  },
   data: function data() {
     return {
       users: {},
-      aaa: {},
-      message: "",
-      posts: [],
-      usersObject: {}
+      message: ""
     };
   },
-  // Server-side only
-  // This will be called by the server renderer automatically
-  serverPrefetch: function serverPrefetch() {// this.posts = await this.getPosts();
-    // try {
-    //   const result = await this.getUsersFromDatabase();
-    //   this.users = result.data.users;
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    // this.posts = await fetch(
-    //   "https://jsonplaceholder.typicode.com/posts"
-    // ).then(res => res.json());
+  serverPrefetch: function serverPrefetch() {
+    var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var result;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this.getUsers();
+
+            case 3:
+              result = _context.sent;
+              _this.users = result.data.users;
+              _context.next = 10;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](0);
+              console.log(_context.t0);
+
+            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee);
+      }, _callee, null, [[0, 7]]);
     }))();
   },
   methods: {
     getUsers: function getUsers() {
-      return this.$store.dispatch("getUsers");
-    },
-    getPosts: function getPosts() {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                return _context2.abrupt("return", new Promise(function (resolve) {
-                  setTimeout(function () {
-                    resolve([{
-                      name: "An Nguyen"
-                    }, {
-                      name: "thanh tran"
-                    }]);
-                  }, 2000);
-                }));
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    getUsersFromDatabase: function getUsersFromDatabase() {// return this.$apollo
-      //   .query({
-      //     query: gql`
-      //       query {
-      //         users {
-      //           data {
-      //             id
-      //             name
-      //           }
-      //         }
-      //       }
-      //     `
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
+      return this.$apollo.query({
+        query: graphql_tag__WEBPACK_IMPORTED_MODULE_1___default()(_templateObject())
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              try {
-                if (!_this.users.data) {// const result = await this.getUsersFromDatabase();
-                  // this.users = result.data.users;
-                }
-              } catch (error) {
-                console.log(error);
-              }
-
-            case 1:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }))();
+    if (!this.users.data) {
+      this.getUsers().then(function (result) {
+        _this2.users = result.data.users;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   }
 });
 
@@ -15095,8 +15029,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v("\n  " + _vm._s(_vm.users) + "\n")
+      )
     ],
     1
   )

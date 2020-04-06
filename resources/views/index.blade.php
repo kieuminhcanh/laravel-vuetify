@@ -14,7 +14,6 @@
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
 
-    <script defer src="{{ mix('js/app-client.js') }}"></script>
 
 </head>
 
@@ -23,6 +22,7 @@
     <div id="app">
         {!! ssr('js/app-server.js')->render() !!}
     </div>
+    <script defer src="{{ mix('js/app-client.js') }}"></script>
 </body>
 
 </html>

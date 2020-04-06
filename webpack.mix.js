@@ -66,8 +66,7 @@ if (process.env.npm_config_section === 'server') {
 
 
 
-// mix.js('resources/js/app-client.js', 'public/js')
-//    .js('resources/js/app-server.js', 'public/js')
+// mix.js('resources/js/app-server.js', 'public/js')
 //    .sourceMaps()
 //    .options({
 //       extractVueStyles: "public/css/app.css",
@@ -85,4 +84,24 @@ if (process.env.npm_config_section === 'server') {
 //       },
 //       target: 'node',
 //       plugins: [new VuetifyLoaderPlugin()]
+//    })
+
+// mix.js('resources/js/app-client.js', 'public/js')
+//    .sourceMaps()
+//    .options({
+//       extractVueStyles: "public/css/app.css",
+//       postCss: [
+//          require('autoprefixer'),
+//       ],
+//    })
+//    .webpackConfig({
+//       resolve: {
+//          extensions: ['.js', '.json', '.vue', '.css', '.scss', '.sass'],
+//          alias: {
+//             '~': path.join(__dirname, './resources/js'),
+//             '@': path.join(__dirname, './resources/js'),
+//          }
+//       },
+//       target: 'web',
+//       // plugins: [new VuetifyLoaderPlugin()]
 //    })
