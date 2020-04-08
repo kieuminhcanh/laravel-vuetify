@@ -1,0 +1,19 @@
+extend type Mutation {
+  "Auth"
+  login(email: String!, password: String!): UserToken!
+    @field(resolver: "AuthMutation@login")
+  register(
+    name: String! @rules(apply: ["required"])
+    email: String! @rules(apply: ["required", "unique:users,email"])
+    password: String! @rules(apply: ["required", "min:6", "confirmed"])
+    password_confirmation: String! @rules(apply: ["required", "min:6"])
+  ): User! @create
+
+  
+  createPost(
+    title: String!
+    description: String!
+    content: String!
+    thumbnail: String!
+  ): User! @create
+}
