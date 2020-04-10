@@ -8,12 +8,34 @@ extend type Mutation {
     password: String! @rules(apply: ["required", "min:6", "confirmed"])
     password_confirmation: String! @rules(apply: ["required", "min:6"])
   ): User! @create
+}
 
-  
-  createPost(
+extend type Mutation @guard {
+  createPage(
     title: String!
+    slug: String
+    description: String
+    content: String
+    thumbnail: String
+  ): Page!
+    @create
+    @InputPageValidation
+    @inject(context: "user.id", name: "user_id")
+
+  updatePage(
+    id: ID!
+    title: String!
+    slug: String
+    description: String
+    content: String
+    thumbnail: String
+  ): Page! @update @InputPageValidation
+
+  createPost(
+    title: String! @rules(apply: ["required"])
+    slug: String @rules(apply: ["unique:posts,slug"])
     description: String!
     content: String!
     thumbnail: String!
-  ): User! @create
+  ): Post! @create @inject(context: "user.id", name: "user_id")
 }

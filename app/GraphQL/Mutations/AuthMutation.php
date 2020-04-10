@@ -67,4 +67,11 @@ class AuthMutation
         // Log::debug($context);
         // Log::debug($resolveInfo);
     }
+
+    public function createPage($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    {
+        Log::debug($rootValue);
+        Log::debug($args);
+       
+    }
 }
