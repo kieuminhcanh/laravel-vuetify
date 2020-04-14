@@ -14,7 +14,18 @@ class InputPageValidationDirective extends ValidationDirective
     {
         return [
             'title' => ["required"],
-            'slug' => [Rule::unique('posts', 'slug')->ignore($this->args['id'], 'id')],
+            'slug' => ["required", "unique:pages,slug," . ($this->args['id'] ?? null)],
+        ];
+    }
+
+    /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'title' => 'Tiêu đề không được để trống',
+            'slug' => 'Slug đã tồn tại, vui lòng chọn slug khác',
         ];
     }
 }

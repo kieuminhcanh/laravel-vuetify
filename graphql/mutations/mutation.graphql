@@ -13,23 +13,23 @@ extend type Mutation {
 extend type Mutation @guard {
   createPage(
     title: String!
-    slug: String
+    slug: String!
     description: String
     content: String
     thumbnail: String
   ): Page!
     @create
-    @InputPageValidation
+    @inputPageValidation
     @inject(context: "user.id", name: "user_id")
 
   updatePage(
     id: ID!
     title: String!
-    slug: String
+    slug: String!
     description: String
     content: String
     thumbnail: String
-  ): Page! @update @InputPageValidation
+  ): Page! @update @inputPageValidation
 
   createPost(
     title: String! @rules(apply: ["required"])

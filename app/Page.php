@@ -17,13 +17,6 @@ class Page extends Model
         'title', 'slug', 'description', 'content', 'thumbnail', 'user_id'
     ];
 
-
-    public function setTitleAttribute($value)
-    {
-        $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::of($value)->slug('-');
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
