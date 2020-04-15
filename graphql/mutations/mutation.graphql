@@ -31,11 +31,29 @@ extend type Mutation @guard {
     thumbnail: String
   ): Page! @update @inputPageValidation
 
+  deletePage(id: ID!): Page @delete
+  
+  
   createPost(
-    title: String! @rules(apply: ["required"])
-    slug: String @rules(apply: ["unique:posts,slug"])
-    description: String!
-    content: String!
-    thumbnail: String!
-  ): Post! @create @inject(context: "user.id", name: "user_id")
-}
+    title: String!
+    slug: String!
+    description: String
+    content: String
+    thumbnail: String
+  ): Post!
+    @create
+    @inputPostValidation
+    @inject(context: "user.id", name: "user_id")
+
+  updatePost(
+    id: ID!
+    title: String!
+    slug: String!
+    description: String
+    content: String
+    thumbnail: String
+  ): Post! @update @inputPostValidation
+
+  deletePost(id: ID!): Post @delete
+
+  }
