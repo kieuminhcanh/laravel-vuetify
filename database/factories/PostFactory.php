@@ -4,6 +4,7 @@
 
 use App\Category;
 use App\Comment;
+use App\Page;
 use App\Post;
 use App\Tag;
 use App\User;
@@ -44,7 +45,7 @@ $factory->define(Post::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Post::class, function (Faker $faker) {
+$factory->define(Page::class, function (Faker $faker) {
     $title = $faker->sentence;
     $slug =  Str::of($title)->slug('-');
 

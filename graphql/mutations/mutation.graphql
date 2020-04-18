@@ -32,8 +32,7 @@ extend type Mutation @guard {
   ): Page! @update @inputPageValidation
 
   deletePage(id: ID!): Page @delete
-  
-  
+
   createPost(
     title: String!
     slug: String!
@@ -56,4 +55,21 @@ extend type Mutation @guard {
 
   deletePost(id: ID!): Post @delete
 
-  }
+  createCategory(name: String!, slug: String!): Category
+    @create
+    @inputCategoryValidation
+
+  updateCategory(id: ID!, name: String!, slug: String!): Category
+    @update
+    @inputCategoryValidation
+
+  deleteCategory(id: ID!): Post @delete
+
+  createTag(name: String!, slug: String!): Tag @create @inputTagValidation
+
+  updateTag(id: ID!, name: String!, slug: String!): Tag
+    @update
+    @inputTagValidation
+
+  deleteTag(id: ID!): Tag @delete
+}
