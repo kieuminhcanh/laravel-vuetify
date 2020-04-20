@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
+
+    protected $fillable = [
+        'name', 'slug'
+    ];
+
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany('App\Post');

@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+import Home from '@/pages/Home'
+import Pages from '@/pages/Pages'
+import Posts from '@/pages/Posts/Index'
+import PostsDetail from '@/pages/Posts/Detail'
+import Categories from '@/pages/Categories'
 
 Vue.use(Router);
 
@@ -15,13 +19,25 @@ export function createRouter() {
                 component: Home
             },
             {
-                path: '/about',
-                name: 'About',
-                // route level code-splitting
-                // this generates a separate chunk (about.[hash].js) for this route
-                // which is lazy-loaded when the route is visited.
-                component: About
-            }
+                path: '/posts',
+                name: 'Posts',
+                component: Posts
+            },
+            {
+                path: '/posts/:slug',
+                name: 'PostsDetail',
+                component: PostsDetail
+            },
+            {
+                path: '/Categories/:slug',
+                name: 'Categories',
+                component: Categories
+            },
+            {
+                path: '/:slug',
+                name: 'Pages',
+                component: Pages
+            },
         ]
     });
 }

@@ -27,7 +27,9 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text :to="{name: 'Home'}" exact>Home</v-btn>
-        <v-btn text :to="{name: 'About'}" exact>About</v-btn>
+        <v-btn text :to="{name: 'Pages'}">Pages</v-btn>
+        <v-btn text :to="{name: 'Posts'}">Posts</v-btn>
+        <v-btn text :to="{name: 'Categories'}">Categories</v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
